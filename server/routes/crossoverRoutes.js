@@ -1,16 +1,17 @@
-
 const express = require('express');
 const crossoverCarControllers = require('../controllers/CrossoverCars');
 
 const router = express.Router();
 
-
 router.get('/crossovers', crossoverCarControllers.getAllCrossoverCars);
-// router POST 
-// router DELETE
-// router PUT
 
+// POST Route
+router.post('/crossovers', crossoverCarControllers.addCrossoverCar);
 
+// DELETE Route
+router.delete('/crossovers/:id', crossoverCarControllers.deleteCrossoverCar);
 
+// PUT Route
+router.put('/crossovers/:id', crossoverCarControllers.updatedCrossoverCar);
 
 module.exports = router;
