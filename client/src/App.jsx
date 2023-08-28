@@ -1,9 +1,19 @@
-import React from 'react'
+import './App.css';
+import {Route , Routes } from 'react-router-dom'
+import Home from './pages/Home';
 
-const App = () => {
+function App() {
   return (
-    <div className='text-4xl text-center py-3 text-orange-600 bg-black font-bold'>TunisianAutoTrek</div>
-  )
+   <>
+
+   <Routes>
+    <Route path='/' element={<Home />}></Route>
+    
+{/*       <Route path='/product' element={<CarModels />}></Route>
+ */}   </Routes>
+
+   </>
+  );
 }
 
-export default App
+export default App;
