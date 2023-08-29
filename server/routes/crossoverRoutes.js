@@ -12,7 +12,7 @@ router.post('/crossovers', crossoverCarControllers.addCrossoverCar);
 router.delete('/crossovers/:id', crossoverCarControllers.deleteCrossoverCar);
 
 // PUT Route
-router.put('/crossovers/:id', crossoverCarControllers.updatedCrossoverCar);
+router.put('/crossovers/:id', crossoverCarControllers.updatedCrossover);
 
 module.exports = router;
 //
