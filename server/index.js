@@ -17,14 +17,6 @@ app.use(express.json());
 app.use(CORS())
 
 
-
-
-
-
-
-
-
-
 // Routes
 app.use('/api', crossoverRoutes);
 

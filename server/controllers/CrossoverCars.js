@@ -1,26 +1,34 @@
-const { crossoverCars } = require('../database/models/index.js');
+const { CrossoverCars } = require('../db/models/index.js');
 
 module.exports = {
-    getAllCrossoverCars: function (req, res) {
-        crossoverCars.getAll(function (err, results) {
-          if (err) {
-            console.error('Error fetching crossover Cars:', err);
-            res.status(500).json({ error: 'Failed to load resource' });
-          } else {
-            res.json(results);
-          }
-        });
-      },
+  getAllCrossoverCars: function (req, res) {
+    CrossoverCars.getAll(function (err, results) {
+      if (err) {
+        console.error('Error fetching crossover Cars:', err);
+        res.status(500).json({ error: 'Failed to load resource' });
+      } else {
+        res.json(results);
+      }
+    });
+  },
 
       addCrossoverCar: function (req, res) {
-       const crossover = {
-         carName: req.body.carName,
-      
-       };
+        const crossover = {
+          carName: req.body.carName,
+          carDesc: req.body.carDesc,
+          carIMG: req.body.carIMG, 
+          carCategory: req.body.carCategory,
+          carPrice: req.body.carPrice,
+          carLocation: req.body.carLocation,
+          carSpecs: req.body.carSpecs,
+          carFuelType: req.body.carFuelType,
+          carEngineType: req.body.carEngineType,
+          carPassengerCapacity: req.body.carPassengerCapacity
+        };
      //
        console.log('Crossover Object:', crossover);
      
-       crossoverCars.add(crossover, function (err, results) {
+       CrossoverCars.add(crossover, function (err, results) {
          if (err) {
            console.error('Error adding crossover car:', err);
            res.status(500).json({ error: 'Failed to add crossover car' });
@@ -32,7 +40,7 @@ module.exports = {
 
      deleteCrossoverCar: function (req, res) {
        const crossovertId = req.params.id;
-       crossoverCars.delete(crossovertId, function (err, result) {
+       CrossoverCars.delete(crossovertId, function (err, result) {
          if (err) {
            console.error('Error deleting crossover car:', err);
            res.status(500).json({ error: 'Failed to delete Crossover Car' });
@@ -45,10 +53,19 @@ module.exports = {
      updatedCrossover: function (req, res) {
        const crossovertId = req.params.id;
        const updatedCrossover = {
-         carName: req.body.carName,
+        carName: req.body.carName,
+        carDesc: req.body.carDesc,
+        carIMG: req.body.carIMG, 
+        carCategory: req.body.carCategory,
+        carPrice: req.body.carPrice,
+        carLocation: req.body.carLocation,
+        carSpecs: req.body.carSpecs,
+        carFuelType: req.body.carFuelType,
+        carEngineType: req.body.carEngineType,
+        carPassengerCapacity: req.body.carPassengerCapacity
       
        };
-       crossoverCars.update(crossovertId, updatedCrossover, function (err, result) {
+       CrossoverCars.update(crossovertId, updatedCrossover, function (err, result) {
          if (err) {
            console.error('Error updating crossover car:', err);
            res.status(500).json({ error: 'Failed to update crossover car' });
