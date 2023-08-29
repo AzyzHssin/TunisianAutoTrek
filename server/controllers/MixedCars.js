@@ -1,10 +1,10 @@
-const { EcoCars } = require('../db/models/index.js');
+const { MixedCars } = require('../db/models/index.js');
 
 module.exports = {
-  getAllEcoCars: function (req, res) {
-    EcoCars.getAll(function (err, results) {
+  getAllMixedCars: function (req, res) {
+    MixedCars.getAll(function (err, results) {
       if (err) {
-        console.error('Error fetching Eco Cars:', err);
+        console.error('Error fetching Mixed Cars:', err);
         res.status(500).json({ error: 'Failed to load resource' });
       } else {
         res.json(results);
@@ -12,8 +12,8 @@ module.exports = {
     });
   },
 
-      addEcoCar: function (req, res) {
-        const eco = {
+      addMixedCar: function (req, res) {
+        const mixed = {
           carName: req.body.carName,
           carDesc: req.body.carDesc,
           carIMG: req.body.carIMG, 
@@ -26,33 +26,33 @@ module.exports = {
           carPassengerCapacity: req.body.carPassengerCapacity
         };
      //
-       console.log('eco Object:', eco);
+       console.log('MixedCar Object:', mixed);
      
-       EcoCars.add(eco, function (err, results) {
+       MixedCars.add(mixed, function (err, results) {
          if (err) {
-           console.error('Error adding eco car:', err);
-           res.status(500).json({ error: 'Failed to add eco car' });
+           console.error('Error adding Mixed car:', err);
+           res.status(500).json({ error: 'Failed to add Mixed car' });
          } else {
            res.status(201).json(results);
          }
        });
      },
 
-     deleteEcoCar: function (req, res) {
-       const ecoId = req.params.id;
-       EcoCars.delete(ecoId, function (err, result) {
+     deleteMixedCar: function (req, res) {
+       const mixedcarId = req.params.id;
+       MixedCars.delete(mixedcarId, function (err, result) {
          if (err) {
-           console.error('Error deleting Eco car:', err);
-           res.status(500).json({ error: 'Failed to delete Eco Car' });
+           console.error('Error deleting Mixed car:', err);
+           res.status(500).json({ error: 'Failed to delete Mixed Car' });
          } else {
-           res.json({ message: 'Eco Car deleted successfully', result });
+           res.json({ message: 'Mixed Car deleted successfully', result });
          }
        });
      },
    
-     updatedEco: function (req, res) {
-       const ecoId = req.params.id;
-       const updatedEco = {
+     updatedMixed: function (req, res) {
+       const mixedcarId = req.params.id;
+       const updatedMixed = {
         carName: req.body.carName,
         carDesc: req.body.carDesc,
         carIMG: req.body.carIMG, 
@@ -65,12 +65,12 @@ module.exports = {
         carPassengerCapacity: req.body.carPassengerCapacity
       
        };
-       EcoCars.update(ecoId, updatedEco, function (err, result) {
+       MixedCars.update(mixedcarId, updatedMixed, function (err, result) {
          if (err) {
-           console.error('Error updating eco car:', err);
-           res.status(500).json({ error: 'Failed to update eco car' });
+           console.error('Error updating Mixed car:', err);
+           res.status(500).json({ error: 'Failed to update Mixed car' });
          } else {
-           res.json({ message: 'Eco Car updated successfully', result });
+           res.json({ message: 'Mixed Car updated successfully', result });
          }
        });
      },
