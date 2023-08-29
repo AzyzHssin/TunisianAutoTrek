@@ -3,6 +3,8 @@
 
 const express = require('express')
 const crossoverRoutes = require('./routes/crossoverRoutes');
+const ecoRoutes = require('./routes/ecoRoutes');
+const luxuryRoutes = require('./routes/luxuryRoutes');
 const app = express();
 const PORT = 5000;
 const CORS = require("cors")
@@ -27,6 +29,9 @@ app.use(CORS())
 
 // Routes
 app.use('/api', crossoverRoutes);
+app.use('/api', ecoRoutes);
+app.use('/api', luxuryRoutes);
+
 
 // Start the server
 app.listen(PORT, () => {
