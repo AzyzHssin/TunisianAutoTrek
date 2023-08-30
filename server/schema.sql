@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `tunisianautotrek`.`crossovercars` (
   `carPassengerCapacity` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -75,6 +76,27 @@ CREATE TABLE IF NOT EXISTS `tunisianautotrek`.`luxurycars` (
   `carEngineType` VARCHAR(45) NOT NULL,
   `carPassengerCapacity` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `tunisianautotrek`.`mixedcars`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tunisianautotrek`.`mixedcars` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `carName` VARCHAR(45) NOT NULL,
+  `carDesc` VARCHAR(500) NOT NULL,
+  `carCatrgory` VARCHAR(45) NOT NULL,
+  `carPrice` VARCHAR(45) NOT NULL,
+  `carLocation` VARCHAR(45) NOT NULL,
+  `carSpecs` VARCHAR(400) NOT NULL,
+  `carFuelType` VARCHAR(45) NOT NULL,
+  `carEngineType` VARCHAR(45) NOT NULL,
+  `carPassengerCapacity` VARCHAR(45) NOT NULL,
+  `carIMG` VARCHAR(2000) NOT NULL,
+  PRIMARY KEY (`id`, `carName`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;

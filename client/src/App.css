@@ -1,40 +1,74 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:wght@500&display=swap');
+
+* {
+ 
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Kanit', sans-serif;
+  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.font-kanit {
+  font-family: 'Kanit', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+::-webkit-scrollbar-track {
+  background: #1a1919; 
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+::-webkit-scrollbar-thumb {
+  background: #ffaa00; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff; 
+}
+
+.searchInputWrapper {
+  position: relative;
+}
+
+.searchInput {
+  margin-right: 10px;
+  width: 10rem;
+  height: 2rem;
+  padding: 0 1rem; 
+  font-size: 12px;
+  border-radius: 25px;
+  border: 1px solid rgb(255, 255, 255);
+  transition: transform 0.1s ease-in-out;
+  background-color: transparent;
+}
+
+::placeholder {
+  color: #a1a1a1;
+}
+
+:focus::placeholder {
+  text-indent: -999px
+}
+
+.searchInput:focus {
+  outline: none;
+  transform: scale(1.1);
+  transition: all 0.1s ease-in-out;
+}
+
+.searchInputIcon {
+  position: absolute;
+  right: 0.8rem;
+  top: 0.5rem;
+  color: #a1a1a1;
+  transition: all 0.1s ease-in-out;
 }
 /* Facts.css */
 
@@ -109,4 +143,9 @@
 
 .description {
   font-size: 1.2rem; /* Adjust font size as needed */
+}
+
+
+.searchInputWrapper > .searchInputIcon {
+  right: 0.2rem;
 }
