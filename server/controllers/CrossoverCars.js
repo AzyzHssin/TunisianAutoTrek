@@ -38,6 +38,10 @@ module.exports = {
        });
      },
 
+        
+
+
+
      deleteCrossoverCar: function (req, res) {
        const crossovertId = req.params.id;
        CrossoverCars.delete(crossovertId, function (err, result) {
@@ -75,4 +79,36 @@ module.exports = {
        });
      },
 
+
+
+     getCrossoverCarsByPrice: function (req, res) {
+      const maxPrice = req.params.maxPrice;
+  
+      CrossoverCars.getByPrice(maxPrice, function (err, results) {
+        if (err) {
+          console.error('Error fetching crossover Cars by price:', err);
+          res.status(500).json({ error: 'Failed to load resource' });
+        } else {
+          res.json(results);
+        }
+      });
+    },
+  
+    getCrossoverCarByName: function (req, res) {
+      const carName = req.params.name;
+      CrossoverCars.getCarByName(carName, function (err, result) {
+        if (err) {
+          console.error('Error fetching crossover car by name:', err);
+          res.status(500).json({ error: 'Failed to load resource' });
+        } else {
+          res.json(result);
+        }
+      });
+    }
+
+
+
+     
 };
+
+
