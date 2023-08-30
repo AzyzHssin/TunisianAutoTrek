@@ -71,6 +71,80 @@
   color: #a1a1a1;
   transition: all 0.1s ease-in-out;
 }
+/* Facts.css */
+
+.facts-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.fact-row {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 300px;
+}
+
+.fact-row img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  
+}
+
+.fact-row h2 {
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: -0.5rem;
+}
+
+.fact-row p {
+  color: #666;
+  font-size: 1rem;
+}
+/* Add this to your existing CSS or create a new CSS file */
+@keyframes moveCar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+
+
+/* Banner.css */
+
+.banner {
+  background: linear-gradient(to left, #000000, #2980b9); /* Background gradient from right to left */
+  color: #fff;
+  padding: 50px; /* Adjust padding as needed */
+  text-align: center;
+}
+
+.content {
+  max-width: 600px; /* Adjust as needed */
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2.5rem; /* Adjust font size as needed */
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1.2rem; /* Adjust font size as needed */
+}
 
 
 .searchInputWrapper > .searchInputIcon {
