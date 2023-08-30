@@ -1,14 +1,18 @@
 import '../App.css';
 import DisplayModels from '../components/DisplayModels';
-import  Hero  from '../components/constants/Hero.jsx';
+import {Hero, Footer, Faqs} from '../components/index';
+import Navbar from '../components/constants/Navbar'
+
 
 
 function App() {
   return (
    <>
-
+   <Navbar />
    <Hero />
    <DisplayModels />
+   <Faqs />
+   <Footer />
 
    </>
   );
