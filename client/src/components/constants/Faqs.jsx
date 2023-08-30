@@ -27,8 +27,8 @@ const Accordion = () => {
 
   return (
     <div className="h-auto pb-24 bg-white grid place-items-center">
-        <h2 class="font-palanquin py-8 text-4xl uppercase font-bold">
-        <span className='text-normal text-yellow-400'>&#9679;</span> Frequently Asked Questions.
+        <h2 className="font-palanquin py-8 text-4xl uppercase font-bold text-gray-600">
+        <span className='text-normal text-yellow-400'>&#9679;</span> Frequently Asked Questions
         </h2>
       <div className="w-6/12 mx-auto rounded border">
         <div className="bg-white p-10 shadow-sm">

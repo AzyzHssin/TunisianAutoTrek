@@ -52,5 +52,32 @@ module.exports = {
       }
     });
   },
+
+
+
+  getByPrice: function (maxPrice, callback) {
+    const sql = `SELECT * FROM crossovercars WHERE carPrice <= ?`;
+    conn.query(sql, [maxPrice], function (error, results) {
+      if (error) {
+        console.error('Error fetching crossovers by price:', error);
+        callback(error, null);
+      } else {
+        callback(null, results);
+      }
+    });
+  },
+
+  getCarByName: function (carName, callback) {
+    const sql = 'SELECT * FROM crossovercars WHERE carName = ?';
+    conn.query(sql, [carName], function (error, results) {
+      if (error) {
+        console.error('Error fetching crossover car by name:', error);
+        callback(error, null);
+      } else {
+        callback(null, results);
+      }
+    });
+  }
+  
   
 };
