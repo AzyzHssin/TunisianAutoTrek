@@ -1,14 +1,14 @@
 import '../App.css';
 import DisplayModels from '../components/DisplayModels';
-import {Hero, Footer,Stats,Banner, Faqs, Testimonials, Contact} from '../components/index';
-import Navbar from '../components/constants/Navbar'
+import {Hero,Stats,Banner, Faqs, Testimonials, Contact} from '../components/index';
+
 
 
 function App() {
   
   return (
    <>
-   <Navbar  />
+  
    <Hero />
    <DisplayModels />
    <Stats />
@@ -16,7 +16,7 @@ function App() {
    <Faqs />
    <Banner />
    <Contact />
-   <Footer />
+
 
    </>
   );

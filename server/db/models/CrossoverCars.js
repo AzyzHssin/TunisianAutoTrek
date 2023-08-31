@@ -54,12 +54,30 @@ module.exports = {
   },
 
 
-
-  getByPrice: function (maxPrice, callback) {
-    const sql = `SELECT * FROM crossovercars WHERE carPrice <= ?`;
-    conn.query(sql, [maxPrice], function (error, results) {
+  searchCars: function (query, callback) {
+    const searchQuery = `%${query.toLowerCase()}%`;
+    const numericValue = parseFloat(query);
+  
+    let sql;
+    let params;
+  
+    if (isNaN(numericValue)) {
+      sql = `
+        SELECT * FROM crossovercars
+        WHERE LOWER(carName) LIKE ?
+      `;
+      params = [searchQuery];
+    } else {
+      sql = `
+        SELECT * FROM crossovercars
+        WHERE LOWER(carName) LIKE ? OR carPrice <= ?
+      `;
+      params = [searchQuery, numericValue];
+    }
+  
+    conn.query(sql, params, function (error, results) {
       if (error) {
-        console.error('Error fetching crossovers by price:', error);
+        console.error('Error searching cars:', error);
         callback(error, null);
       } else {
         callback(null, results);
@@ -67,17 +85,22 @@ module.exports = {
     });
   },
 
-  getCarByName: function (carName, callback) {
-    const sql = 'SELECT * FROM crossovercars WHERE carName = ?';
-    conn.query(sql, [carName], function (error, results) {
+
+  getById: function (carId, callback) {
+    const sql = `SELECT * FROM crossovercars WHERE id = ?`;
+    conn.query(sql, [carId], function (error, results) {
       if (error) {
-        console.error('Error fetching crossover car by name:', error);
+        console.error('Error fetching crossover by ID:', error);
         callback(error, null);
       } else {
-        callback(null, results);
+        if (results.length === 0) {
+          callback(null, null); // Car not found
+        } else {
+          callback(null, results[0]); // Return the first result
+        }
       }
     });
-  }
+  },
   
-  
+
 };

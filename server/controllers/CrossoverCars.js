@@ -81,33 +81,35 @@ module.exports = {
 
 
 
-     getCrossoverCarsByPrice: function (req, res) {
-      const maxPrice = req.params.maxPrice;
-  
-      CrossoverCars.getByPrice(maxPrice, function (err, results) {
+
+     getCrossoverCarById: function (req, res) {
+      const carId = req.params.id;
+      CrossoverCars.getById(carId, function (err, car) {
         if (err) {
-          console.error('Error fetching crossover Cars by price:', err);
+          console.error('Error fetching crossover Car by ID:', err);
+          res.status(500).json({ error: 'Failed to load resource' });
+        } else {
+          res.json(car);
+        }
+      });
+    },
+
+     
+
+
+    searchCrossoverCars: function (req, res) {
+      let query = req.params.query.toLowerCase();
+    
+      CrossoverCars.searchCars(query, function (err, results) {
+        if (err) {
+          console.error('Error searching crossover Cars:', err);
           res.status(500).json({ error: 'Failed to load resource' });
         } else {
           res.json(results);
         }
       });
-    },
-  
-    getCrossoverCarByName: function (req, res) {
-      const carName = req.params.name;
-      CrossoverCars.getCarByName(carName, function (err, result) {
-        if (err) {
-          console.error('Error fetching crossover car by name:', err);
-          res.status(500).json({ error: 'Failed to load resource' });
-        } else {
-          res.json(result);
-        }
-      });
     }
-
-
-
+    
      
 };
 

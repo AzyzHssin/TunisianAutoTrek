@@ -3,13 +3,13 @@ const crossoverCarControllers = require('../controllers/CrossoverCars');
 
 const router = express.Router();
 
-
-router.get('/crossovers/price/:maxPrice', crossoverCarControllers.getCrossoverCarsByPrice);
-router.get('/crossovers/name/:name', crossoverCarControllers.getCrossoverCarByName);
-
+router.get('/crossovers/search/:query', crossoverCarControllers.searchCrossoverCars);
+router.get('/crossovers/:id', crossoverCarControllers.getCrossoverCarById);
 
 
 router.get('/crossovers', crossoverCarControllers.getAllCrossoverCars);
+
+
 
 // POST Route
 router.post('/crossovers', crossoverCarControllers.addCrossoverCar);
