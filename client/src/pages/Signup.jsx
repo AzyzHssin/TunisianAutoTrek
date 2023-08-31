@@ -1,47 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { UserAuth } from '../context/AuthContext';
-import AuthAlert from '../components/constants/AuthAlert';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from 'firebase/auth';
 import { auth } from '../utils/firebase';
+import AuthAlert from '../components/constants/AuthAlert';
 
-const Signin = () => {
-  const { googleSignIn, user } = UserAuth();
+const Signup = () => {
+  const { googleSignIn } = UserAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+  const [displayName, setDisplayName] = useState('');
   const [showpass, setShowPass] = useState(false)
+  const [error, setError] = useState(null); 
 
-
-  const handleEmailSignIn = async () => {
+  const handleEmailSignUp = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(userCredential.user, {
+          displayName: displayName
+        });
+        
+        await sendEmailVerification(userCredential.user);
+      navigate('/');
     } catch (error) {
-      setError('Invalid email or password.');
+      setError('An error occurred during sign-up.');
       console.log(error);
     }
   };
 
-  useEffect(() => {
-    const redirectToHome = () => {
-      navigate('/');
-    };
-
-    if (user !== null) {
-      if (user.emailVerified) {
-        redirectToHome();
-      } else {
-        setError('Please verify your email before signing in.');
-      }
-    }
-  }, [user, navigate]);
-
   return (
     <>
-     {error && <AuthAlert message={error} />} 
-
+      {error && <AuthAlert message={error} />}
       <div className="bg-gray-100">
                 <div className="xl:px-20 md:px-10 sm:px-6 px-4 md:py-12 py-9 2xl:mx-auto 2xl:container md:flex items-center justify-center h-full">
                     <div className=" md:hidden sm:mb-8 mb-6">
@@ -58,14 +49,14 @@ const Signin = () => {
                     </div>
                     <div className="bg-white shadow-lg rounded xl:w-1/3 lg:w-5/12 md:w-1/2 w-full lg:px-10 sm:px-6 sm:py-10 px-2 py-6">
                         <p tabIndex={0} className="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800">
-                            Login to your account
+                            Create an account
                         </p>
                         <p tabIndex={0} className="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500">
-                            Dont have account?{" "}
-                            <Link to='/signup'>
+                            You have account?{" "}
+                            <Link to='/signin'>
                             <a href="javascript:void(0)" className="hover:text-gray-500 focus:text-gray-500 focus:outline-none focus:underline hover:underline text-sm font-medium leading-none text-gray-800 cursor-pointer">
                                 {" "}
-                                Sign up
+                                SignIn
                             </a>
                             </Link>
                         </p>
@@ -86,11 +77,29 @@ const Signin = () => {
                         <div>
                             <label htmlFor="email" className="text-sm font-medium leading-none text-gray-800">
                                 {" "}
+                                Full Name{" "}
+                            </label>
+                            <input 
+                             type='text'
+                             value={displayName}
+                             onChange={(e) => {
+                               setDisplayName(e.target.value);
+                               setError(null);
+                             }}
+               className="bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-500 text-gray-800 py-3 w-full pl-3 mt-2" placeholder="e.g: Moenes Mannai" />
+                        </div>
+                        <div>
+                            <label htmlFor="email" className="text-sm font-medium leading-none text-gray-800">
+                                {" "}
                                 Email{" "}
                             </label>
-                            <input type='email'
-             value={email}
-             onChange={(e) => setEmail(e.target.value)}
+                            <input 
+                            type='email'
+                            value={email}
+                            onChange={(e) => {
+                              setEmail(e.target.value);
+                              setError(null);
+                            }}
              aria-labelledby="email"
                className="bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-500 text-gray-800 py-3 w-full pl-3 mt-2" placeholder="e.g: example@email.com" />
                         </div>
@@ -101,10 +110,13 @@ const Signin = () => {
                             </label>
                             <div className="relative flex items-center justify-center">
                                 <input
-                                type={showpass ? "text" : "password"}
-                                 placeholder='Password'
-                                 value={password}
-                                 onChange={(e) => setPassword(e.target.value)}
+                                 type={showpass ? "text" : "password"}
+                                placeholder='Password'
+                                value={password}
+                                onChange={(e) => {
+                                  setPassword(e.target.value);
+                                  setError(null); 
+                                }}
                                 id="myInput" className="bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                                 <div onClick={()=>setShowPass(!showpass)} className="absolute right-0 mt-2 mr-3 cursor-pointer">
                                     <div id="show">
@@ -127,13 +139,13 @@ const Signin = () => {
                             </div>
                         </div>
                         <div className="mt-8">
-                            <button onClick={handleEmailSignIn} role="button" className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">
-                                Sign in
+                            <button onClick={handleEmailSignUp} role="button" className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">
+                                Sign Up
                             </button>
                             
                         </div>
                     </div>
-                    <div className="xl:w-1/3 md:w-1/2 lg:ml-16 ml-8 md:mt-0 mt-6" data-aos="fade-left">
+                    <div className="xl:w-1/3 md:w-1/2 lg:ml-16 ml-8 md:mt-0 mt-6">
                         <div className="flex items-start mt-8">
                             <div>
                                 <svg width={22} height={14} viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -147,14 +159,14 @@ const Signin = () => {
                                     />
                                 </svg>
                             </div>
-                            <p className="sm:text-2xl text-xl leading-7 text-gray-600 pl-2.5">At TunisianAutoTrek, we turn your travel dreams into reality, one remarkable ride at a time</p>
+                            <p className="sm:text-2xl text-xl leading-7 text-gray-600 pl-2.5">With TunisianAutoTrek, we provide more than cars; we deliver the keys to unlock unforgettable Tunisian memories.</p>
                         </div>
                         <div className="flex items-center pl-8 mt-5 rounded-lg bg-black py-5">
                             <div className="w-12 h-12">
-                                <img src="https://indownloader.app/file?id=aHR0cHM6Ly9zY29udGVudC1hdGwzLTEuY2RuaW5zdGFncmFtLmNvbS92L3Q1MS4yODg1LTE1LzM1MzA0NTg2Ml8xODc4MDg0ODc1OTA1NzkxXzc2MDg4NTMyMDE0MzQyNzMwNzJfbi53ZWJwP3N0cD1kc3QtanBnX2UzNSZfbmNfaHQ9c2NvbnRlbnQtYXRsMy0xLmNkbmluc3RhZ3JhbS5jb20mX25jX2NhdD0xMDMmX25jX29oYz0ydnZnNzlwOGtEVUFYLXh3NnRPJmVkbT1BS0VRRmVrQkFBQUEmY2NiPTctNSZvaD0wMF9BZkI0eWtIdGRVSmlxaW0yS2JZY3JIdlhfUzAwa3dFdnVmLXduQkUtemJpV0x3Jm9lPTY0RjU3QTYxJl9uY19zaWQ9MjlkZGYz" alt="profile picture" className="w-full h-full object-cover rounded-lg" />
+                                <img src="https://cdn.discordapp.com/attachments/1101093200610996297/1146762784441376768/307264614_1545455172539015_8440815527468761704_n.jpg" alt="Profile_Picture" className="w-full h-full object-cover rounded-lg" />
                             </div>
                             <div className="ml-2">
-                                <p className="text-sm font-medium leading-none text-white">Moenes Mannai</p>
+                                <p className="text-sm font-medium leading-none text-white">Radhwen Darragi</p>
                                 <p className="text-sm font-medium leading-none text-gray-300 mt-1">Founder of TunisianAutoTrek</p>
                             </div>
                         </div>
@@ -165,4 +177,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Signup;

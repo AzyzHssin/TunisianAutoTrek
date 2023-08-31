@@ -30,7 +30,7 @@ const Accordion = () => {
         <h2 className="font-palanquin py-8 text-4xl uppercase font-bold text-gray-600">
         <span className='text-normal text-yellow-400'>&#9679;</span> Frequently Asked Questions
         </h2>
-      <div className="w-6/12 mx-auto rounded border">
+      <div className="w-6/12 mx-auto rounded border" data-aos="fade-up">
         <div className="bg-white p-10 shadow-sm">
           <h3 className="text-lg font-medium text-gray-800">Have Questions? Find Your Answers Here!</h3>
           <p className="text-sm font-light text-gray-600 my-3">

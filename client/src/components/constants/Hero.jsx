@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-
 
 const Hero = () => {
+    const docForm = 'https://docs.google.com/forms/d/e/1FAIpQLSdJvdNLhbUrjyljIqntYgRKWp1oMXFv6EmbPEAvTKwZiqXj4w/viewform?vc=0&c=0&w=1&flr=0';
   return (
   <>
 <header className="bg-white dark:bg-black">
@@ -23,7 +22,7 @@ const Hero = () => {
                 <h1 className="text-3xl font-kanit font-medium tracking-wide text-gray-800 dark:text-white md:text-6xl">Discover Tunisia's Beauty on Wheels with TunisianAutoTrek</h1>
                 <p className="mt-4 text-gray-600 dark:text-gray-300">Uncover Tunisia's wonders on your terms with <span className='text-yellow-500 font-bold capitalize'>TunisianAutoTrek</span>'s premium rental cars.</p>
                 <div className="mt-6">
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSdJvdNLhbUrjyljIqntYgRKWp1oMXFv6EmbPEAvTKwZiqXj4w/viewform?vc=0&c=0&w=1&flr=0" className="relative tracking-wide inline-flex items-center justify-start py-3 pl-4 pr-12 overflow-hidden font-semibold text-white transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-black group">
+<a href={docForm} className="relative tracking-wide inline-flex items-center justify-start py-3 pl-4 pr-12 overflow-hidden font-semibold text-white transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-black group">
 <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-yellow-400 group-hover:h-full"></span>
 <span className="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12">
 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -37,8 +36,16 @@ const Hero = () => {
             </div>
         </div>
 
-        <div className="flex items-center justify-center w-96 h-96 md:w-1/2">
-            <img className="object-cover w-full h-full rounded-md" src="https://purepng.com/public/uploads/large/purepng.com-land-roverland-roverfour-wheel-drive-vehiclesjaguar-land-roverland-rover-vehicles-17015275054957uggo.png" alt="apple watch photo" />
+        <div className="flex items-center justify-center w-96 h-96 md:w-1/2"
+        data-aos="fade-left"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine"
+        >
+        <img
+                            className="object-cover w-full h-full rounded-md"
+                            src="https://purepng.com/public/uploads/large/purepng.com-land-roverland-roverfour-wheel-drive-vehiclesjaguar-land-roverland-rover-vehicles-17015275054957uggo.png"
+                            alt="TunisianAutoTrek Vehicle"
+                        />
         </div>
     </div>
 </header>
