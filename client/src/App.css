@@ -121,3 +121,51 @@
 .rate > label:hover ~ input:checked ~ label {
   color: #e5b508;
 }
+
+
+
+/** Banner Component CSS Styling **/
+
+/* Banner.css */
+.banner-container {
+  padding: 3rem 1rem;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.banner-content {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banner-text {
+  padding: 2rem 1rem;
+  flex: 1;
+}
+
+.banner-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.banner-description {
+  font-size: 1.25rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.banner-image {
+  flex: 1;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+}

@@ -7,7 +7,7 @@ const DisplayModels = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/crossovers/')
+    axios.get('http://localhost:5000/api/cars/')
       .then((res) => {
         setData(res.data);
       })

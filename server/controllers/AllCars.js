@@ -1,7 +1,7 @@
 const { CrossoverCars } = require('../db/models/index.js');
 
 module.exports = {
-  getAllCrossoverCars: function (req, res) {
+  getAllCars: function (req, res) {
     CrossoverCars.getAll(function (err, results) {
       if (err) {
         console.error('Error fetching crossover Cars:', err);
@@ -12,11 +12,14 @@ module.exports = {
     });
   },
 
-      addCrossoverCar: function (req, res) {
+      addCar: function (req, res) {
         const crossover = {
           carName: req.body.carName,
           carDesc: req.body.carDesc,
           carIMG: req.body.carIMG, 
+          carIMG2: req.body.carIMG2,
+          carIMG3: req.body.carIMG3,
+          carIMG4: req.body.carIMG4,
           carCategory: req.body.carCategory,
           carPrice: req.body.carPrice,
           carLocation: req.body.carLocation,
@@ -42,7 +45,7 @@ module.exports = {
 
 
 
-     deleteCrossoverCar: function (req, res) {
+     deleteCar: function (req, res) {
        const crossovertId = req.params.id;
        CrossoverCars.delete(crossovertId, function (err, result) {
          if (err) {
@@ -54,12 +57,15 @@ module.exports = {
        });
      },
    
-     updatedCrossover: function (req, res) {
+     updatedCar: function (req, res) {
        const crossovertId = req.params.id;
-       const updatedCrossover = {
+       const updatedCar = {
         carName: req.body.carName,
         carDesc: req.body.carDesc,
         carIMG: req.body.carIMG, 
+        carIMG2: req.body.carIMG2,
+        carIMG3: req.body.carIMG3,
+        carIMG4: req.body.carIMG4,
         carCategory: req.body.carCategory,
         carPrice: req.body.carPrice,
         carLocation: req.body.carLocation,
@@ -69,7 +75,7 @@ module.exports = {
         carPassengerCapacity: req.body.carPassengerCapacity
       
        };
-       CrossoverCars.update(crossovertId, updatedCrossover, function (err, result) {
+       CrossoverCars.update(crossovertId, updatedCar, function (err, result) {
          if (err) {
            console.error('Error updating crossover car:', err);
            res.status(500).json({ error: 'Failed to update crossover car' });
@@ -82,7 +88,7 @@ module.exports = {
 
 
 
-     getCrossoverCarById: function (req, res) {
+     getCarById: function (req, res) {
       const carId = req.params.id;
       CrossoverCars.getById(carId, function (err, car) {
         if (err) {
@@ -100,7 +106,7 @@ module.exports = {
     searchCrossoverCars: function (req, res) {
       let query = req.params.query.toLowerCase();
     
-      CrossoverCars.searchCars(query, function (err, results) {
+      CrossoverCars.carControllerss(query, function (err, results) {
         if (err) {
           console.error('Error searching crossover Cars:', err);
           res.status(500).json({ error: 'Failed to load resource' });

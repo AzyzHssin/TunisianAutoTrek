@@ -14,14 +14,8 @@ app.use(express.json());
 app.use(CORS());
 
 // Routes
-const crossoverRoutes = require("./routes/crossoverRoutes");
-const ecoRoutes = require("./routes/ecoRoutes");
-const luxuryRoutes = require("./routes/luxuryRoutes");
-const mixedRoutes = require("./routes/mixedRoutes");
-app.use("/api", mixedRoutes);
-app.use("/api", crossoverRoutes);
-app.use("/api", ecoRoutes);
-app.use("/api", luxuryRoutes);
+const carRoutes = require("./routes/carRoutes");
+app.use("/api", carRoutes);
 
 // Start the server
 app.listen(PORT, () => {
