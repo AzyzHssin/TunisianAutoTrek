@@ -14,8 +14,8 @@ module.exports = {
   },
 
   add: function (crossover, callback) {
-    const sql = `INSERT INTO crossovercars (carName, carDesc, carIMG, carCategory, carPrice, carLocation, carSpecs, carFuelType, carEngineType, carPassengerCapacity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-    conn.query(sql, [crossover.carName, crossover.carDesc, crossover.carIMG, crossover.carCategory, crossover.carPrice, crossover.carLocation, crossover.carSpecs, crossover.carFuelType, crossover.carEngineType, crossover.carPassengerCapacity], function (error, results) {
+    const sql = `INSERT INTO crossovercars (carName, carDesc, carIMG, carIMG2, carIMG3, carIMG4 , carCategory, carPrice, carLocation, carSpecs, carFuelType, carEngineType, carPassengerCapacity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)`;
+    conn.query(sql, [crossover.carName, crossover.carDesc, crossover.carIMG, crossover.carIMG2, crossover.carIMG3, crossover.carIMG4, crossover.carCategory, crossover.carPrice, crossover.carLocation, crossover.carSpecs, crossover.carFuelType, crossover.carEngineType, crossover.carPassengerCapacity], function (error, results) {
       if (error) {
         console.error('Error adding crossover:', error);
         callback(error, null);
@@ -40,9 +40,9 @@ module.exports = {
     });
   },
 
-  update: function (crossoverId, updatedCrossover, callback) {
-    const sql = `UPDATE crossovercars SET carName=?, carDesc=?, carIMG=?, carCategory=?, carPrice=?, carLocation=?, carSpecs=?, carFuelType=?, carEngineType=?, carPassengerCapacity=? WHERE id = ?`;
-    conn.query(sql, [updatedCrossover.carName, updatedCrossover.carDesc, updatedCrossover.carIMG, updatedCrossover.carCategory, updatedCrossover.carPrice, updatedCrossover.carLocation, updatedCrossover.carSpecs, updatedCrossover.carFuelType, updatedCrossover.carEngineType, updatedCrossover.carPassengerCapacity, crossoverId], function (error, result) {
+  update: function (crossoverId, updatedCar, callback) {
+    const sql = `UPDATE crossovercars SET carName=?, carDesc=?, carIMG=? , carIMG2=? , carIMG3=? , carIMG4=? , carCategory=?, carPrice=?, carLocation=?, carSpecs=?, carFuelType=?, carEngineType=?, carPassengerCapacity=? WHERE id = ?`;
+    conn.query(sql, [updatedCar.carName, updatedCar.carDesc, updatedCar.carIMG , updatedCar.carIMG2, updatedCar.carIMG3, updatedCar.carIMG4, updatedCar.carCategory, updatedCar.carPrice, updatedCar.carLocation, updatedCar.carSpecs, updatedCar.carFuelType, updatedCar.carEngineType, updatedCar.carPassengerCapacity, crossoverId], function (error, result) {
       if (error) {
         console.error('Error updating crossover:', error);
         callback(error, null);
@@ -54,7 +54,7 @@ module.exports = {
   },
 
 
-  searchCars: function (query, callback) {
+  carControllerss: function (query, callback) {
     const searchQuery = `%${query.toLowerCase()}%`;
     const numericValue = parseFloat(query);
   
@@ -94,9 +94,9 @@ module.exports = {
         callback(error, null);
       } else {
         if (results.length === 0) {
-          callback(null, null); // Car not found
+          callback(null, null);
         } else {
-          callback(null, results[0]); // Return the first result
+          callback(null, results[0]);
         }
       }
     });

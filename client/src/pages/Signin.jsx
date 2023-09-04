@@ -42,7 +42,7 @@ const Signin = () => {
     <>
      {error && <AuthAlert message={error} />} 
 
-      <div className="bg-gray-100">
+      <div className="bg-white">
                 <div className="xl:px-20 md:px-10 sm:px-6 px-4 md:py-12 py-9 2xl:mx-auto 2xl:container md:flex items-center justify-center h-full">
                     <div className=" md:hidden sm:mb-8 mb-6">
                         <svg width={191} height={34} viewBox="0 0 191 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +56,7 @@ const Signin = () => {
                             />
                         </svg>
                     </div>
-                    <div className="bg-white shadow-lg rounded xl:w-1/3 lg:w-5/12 md:w-1/2 w-full lg:px-10 sm:px-6 sm:py-10 px-2 py-6">
+                    <div className="border xl:w-1/3 lg:w-5/12 md:w-1/2 w-full lg:px-10 sm:px-6 sm:py-10 px-2 py-6">
                         <p tabIndex={0} className="focus:outline-none text-2xl font-extrabold leading-6 text-gray-800">
                             Login to your account
                         </p>
@@ -84,7 +84,7 @@ const Signin = () => {
                             <hr className="w-full bg-gray-400" />
                         </div>
                         <div>
-                            <label htmlFor="email" className="text-sm font-medium leading-none text-gray-800">
+                            <label htmlhtmlFor="email" className="text-sm font-medium leading-none text-gray-800">
                                 {" "}
                                 Email{" "}
                             </label>
@@ -95,7 +95,7 @@ const Signin = () => {
                className="bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-500 text-gray-800 py-3 w-full pl-3 mt-2" placeholder="e.g: example@email.com" />
                         </div>
                         <div className="mt-6 w-full">
-                            <label htmlFor="myInput" className="text-sm font-medium leading-none text-gray-800">
+                            <label htmlhtmlFor="myInput" className="text-sm font-medium leading-none text-gray-800">
                                 {" "}
                                 Password{" "}
                             </label>
@@ -127,7 +127,7 @@ const Signin = () => {
                             </div>
                         </div>
                         <div className="mt-8">
-                            <button onClick={handleEmailSignIn} role="button" className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">
+                            <button onClick={handleEmailSignIn}  className="focus:ring-2 focus:ring-offset-2 text-sm font-semibold leading-none text-black uppercase tracking-wide focus:outline-none bg-yellow-400 border rounded hover:bg-yellow-500 py-4 w-full">
                                 Sign in
                             </button>
                             

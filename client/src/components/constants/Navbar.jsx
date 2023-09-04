@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useState , useEffect } from 'react'
 import Search from './Search'
 import * as images from '../../assets/'
 import { Link } from 'react-router-dom';
@@ -17,22 +17,42 @@ const Navbar = () => {
         }
       }
 
+      const [isSticky, setIsSticky] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY >= 30) {
+      setIsSticky(true);
+    } else {
+      setIsSticky(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
 
   return (
     <nav className="bg-white dark:bg-black">
-    <div className="container p-6 mx-auto">
-      <img className='mx-auto' src={images.logo} width={130} alt="" />
-
+     {/*  <nav className={`bg-white dark:bg-black ${isSticky ? 'sticky top-0 shadow-md z-50' : ''}`}>  */}
+    <div className="container py-4 mx-auto">
         <div className="flex items-center justify-center mt-6 text-gray-600 uppercase dark:text-gray-300">
+      <img className='mr-8' src={images.logo} width={150} alt="" />
             <a href="/" className="text-gray-800 dark:text-gray-200 mx-1.5 sm:mx-6">Home</a>
 
             <a href="/" className="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-white hover:border-yellow-500 ease-in duration-300 mx-1.5 sm:mx-6">About</a>
 
             <a href="/" className="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-white hover:border-yellow-500 ease-in duration-300 mx-1.5 sm:mx-6">Car Models</a>
 
-            <a href="/" className="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-white hover:border-yellow-500 ease-in duration-300 mx-1.5 sm:mx-6">Team</a>
+            <a href="/" className="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-white hover:border-yellow-500 ease-in duration-300 mx-1.5 sm:mx-6">Categories</a>
 
-            <a href="/" className="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-white hover:border-yellow-500 ease-in duration-300 mx-1.5 sm:mx-6">Contact</a>
+            <a href="/" className="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-white hover:border-yellow-500 ease-in duration-300 mx-1.5 sm:mx-6">FAQs</a>
+
+           <Link to='/contact' className="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-white hover:border-yellow-500 ease-in duration-300 mx-1.5 sm:mx-6">Contact</Link>
 
 <Search />
 
@@ -51,13 +71,12 @@ const Navbar = () => {
     <img className="w-10 h-10 object-cover border-2 rounded-full" src={user.photoURL} alt="" />
     <div className="font-medium dark:text-white">
         <div>{user?.displayName}</div>
-        <div className="text-sm text-gray-500 dark:text-gray-400">Staff</div>
     </div>
 </div>
 
   <ul className="dropdown-menu absolute hidden text-gray-700 pt-3 text-sm w-48">
-  <li className=""><a className="rounded-t bg-gray-200 hover:bg-yellow-400 py-2 px-4 block whitespace-no-wrap" href="/">Account</a></li>
-  <li className=""><a className="bg-gray-200 hover:bg-yellow-400 py-2 px-4 block whitespace-no-wrap" href="/">Admin Dashboard</a></li>
+  <li className=""><a className="rounded-t bg-gray-200 hover:bg-yellow-400 py-2 px-4 block whitespace-no-wrap text-center" href="/">Account</a></li>
+{/*   <li className=""><Link to='/admindashboard' className="bg-gray-200 hover:bg-yellow-400 py-2 px-4 block whitespace-no-wrap" href="/">Admin Dashboard</Link></li> */}
   <li className="">
     <button
       onClick={handleSignOut}
